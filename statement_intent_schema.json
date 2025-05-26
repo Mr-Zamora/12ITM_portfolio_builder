@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2025-05-26",
+    "purpose": "Schema for Statement of Intent generation"
+  },
+  "sections": [
+    {
+      "id": "project_overview",
+      "title": "Project Overview",
+      "fields": [
+        {
+          "id": "project_title",
+          "type": "text",
+          "prompt": "What is the proposed title of your project?",
+          "required": true
+        },
+        {
+          "id": "project_type",
+          "type": "select",
+          "prompt": "What type of multimedia product are you creating?",
+          "options": [
+            "Interactive Website",
+            "2D Animation",
+            "3D Animation",
+            "Mobile Application",
+            "Game",
+            "Interactive Installation",
+            "Video Production",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "problem_opportunity",
+          "type": "textarea",
+          "prompt": "What problem or opportunity does your project address?",
+          "required": true
+        },
+        {
+          "id": "target_audience",
+          "type": "text",
+          "prompt": "Who is your target audience?",
+          "required": true
+        },
+        {
+          "id": "technologies",
+          "type": "multiselect",
+          "prompt": "What technologies will you use?",
+          "options": [
+            "HTML/CSS/JavaScript",
+            "Python",
+            "Unity",
+            "Blender",
+            "Adobe Creative Suite",
+            "React/Node.js",
+            "Mobile Development",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "learning_goals",
+          "type": "textarea",
+          "prompt": "What do you hope to learn from this project?",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "project_plan",
+      "title": "Project Plan",
+      "fields": [
+        {
+          "id": "timeline",
+          "type": "textarea",
+          "prompt": "Outline your project timeline",
+          "required": true
+        },
+        {
+          "id": "milestones",
+          "type": "textarea",
+          "prompt": "List your key milestones",
+          "required": true
+        },
+        {
+          "id": "challenges",
+          "type": "textarea",
+          "prompt": "What challenges do you anticipate?",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
