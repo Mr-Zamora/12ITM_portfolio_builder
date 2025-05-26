@@ -1,0 +1,59 @@
+# Statement of Intent: Sex Education Training: An Interactive Parent-Teen Guide
+
+## 1.1 Introduction: Defining the Project and its Purpose
+For my Industrial Technology Multimedia Major Project, I'm going to design, build, and make **an interactive web-based educational experience** titled 'Sex Education Training: An Interactive Parent-Teen Guide'.
+
+This project is mostly happening because I've noticed **the common difficulty parents face in starting open, comfortable, and informative conversations about sex education with their teenagers, especially when traditional methods might feel awkward or just not good enough**.
+
+My project will specifically focus on **creating a sensitive and effective resource that helps families, particularly those from strict religious backgrounds, navigate these essential discussions with greater ease and understanding**. This will be done by primarily using **Flask, HTML, CSS, Jinja, JavaScript, and JSON for the web application's structure and interactivity, along with strong UI/UX design. I’ll also use graphics, video, and both 3D and 2D animation to make the content engaging and easy to understand**.
+
+## 1.2 Rationale: Why This Project? Why This Approach?
+I decided to make this project because I'm really into **making educational content that genuinely helps people, especially since I experienced an awkward sex talk with my own parents. I know many other teenagers, particularly those from strict religious backgrounds, face similar challenges, which highlights a widespread need for accessible and sensitive tools to help with these critical discussions**. This project fits right in with what I want to do in the **[digital education / interactive media]** industry.
+
+I also really believe that **an interactive web-based educational experience** is the best way to do this project because **it allows for private, self-paced learning that users can access from home. Interactivity, through elements like quizzes and scenario role-playing, makes sensitive topics less daunting and more engaging than just watching a video or reading a book. Video and animation can explain complex or sensitive topics clearly and visually, making the information easier to take in. Plus, a web-based platform means it can be reached by a lot of people across different devices, making it a truly useful resource for families**.
+
+This project is a huge chance for me to learn and get really good at **full-stack web development with Python Flask, advanced UI/UX design for educational platforms, and integrating complex 2D/3D animations with interactive video content**, which are all skills used a lot in today's **[digital education / e-learning]** industry.
+
+## 1.3 Target Audience: Who is this Project For, and Why?
+The main people I'm making 'Sex Education Training: An Interactive Parent-Teen Guide' for are **parents and their teenagers (aged approximately 13-17) who are looking for a less awkward and more informative way to discuss sex education**.
+
+I picked this group because **my own experience, and what I've seen with friends, shows there's a big gap in resources that cater to the specific communication challenges and sensitivities involved in these conversations, especially for families with strong cultural or religious views**.
+
+I expect this audience to **be digitally savvy, comfortable using online resources, and keen to find a private and supportive way to approach sensitive topics. They will appreciate clear, factual information presented in an approachable and non-judgmental style, preferring an interactive experience that allows for self-paced learning over traditional, face-to-face methods**. This will directly change how I design the content, how it feels to interact with, and what it does, so it works well for them.
+
+## 1.4 Project Goals and Objectives
+The main goal of this project is to **provide an innovative, accessible, and sensitive platform that significantly improves the comfort and effectiveness of sex education discussions between parents and their teenagers**. To do this, here are my clear and important goals:
+
+-   **Objective 1 (User Experience/Learning Outcome):** **Enable users to successfully complete all core interactive modules, leading to a greater sense of confidence and preparedness in discussing sex education topics with their family members.**
+-   **Objective 2 (Engagement/Aesthetics/Technical Aspect):** **Develop a visually appealing and intuitive user interface (UI) and user experience (UX) that promotes a safe, non-judgmental, and engaging learning environment, making sensitive information approachable.**
+-   **Objective 3 (Skill Demonstration/Problem-Solving):** **Successfully build a robust web application using Flask for the backend, integrating complex multimedia elements, including 2D/3D animations and interactive video, to deliver dynamic and engaging content.**
+
+## 1.5 Project Parameters, Scope, and Constraints
+The final thing I'm making will be an **interactive web-based educational experience**, delivered as **a responsive web application accessed via a standard web browser on desktop or tablet devices**.
+
+The game will have **multiple interactive video modules covering key sex education topics, a resource library with frequently asked questions and glossaries, short explainer animations (both 2D and 3D) to illustrate complex concepts, and interactive scenarios or quizzes to practice communication skills**. To make sure I can finish the project on time, I won't be adding things like **live chat support, personalised user accounts with progress tracking, or deep customisation of the visual assets** to the final game.
+
+Here are the main limitations and challenges I expect to face while making this:
+-   **Time:** The biggest challenge is the time I have for the HSC course, which is about forty-two weeks. This means I really need to manage my time strictly and stick to the detailed plan I've set up.
+-   **Skills & Knowledge:** To do this well, I need to get good at **advanced full-stack web development using Flask and its ecosystem, and integrating complex multimedia production (especially 2D/3D animation and interactive video within a web environment)**. I'll learn these skills from **online tutorials (like Udemy, Skillshare), feedback from my teachers and mentors, and by doing a lot of practice making smaller test projects and prototypes**.
+-   **Resources & Equipment:** I need access to certain software (`Flask`, `HTML`, `CSS`, `Jinja`, `JavaScript`, `JSON`, `Adobe After Effects`, `Blender`, `Adobe Premiere Pro`, `Adobe Photoshop`) and hardware (`a high-performance computer for rendering animations and video editing`, `a reliable internet connection`). I'll have to carefully handle things like **making sure the web application runs smoothly and quickly across different browsers and devices, and ensuring all the multimedia content is optimised for web delivery without losing quality**. I'll manage this by testing and fixing bugs a lot.
+-   **Technical Complexity:** Making tricky features, like **seamlessly integrating interactive video elements with dynamic content served by the Flask backend, and ensuring smooth playback of complex 2D/3D animations within the web browser**, will be a big technical challenge. This means I need to plan really well, test things often, and fix bugs carefully.
+
+## 1.6 Timeline and Milestones
+The deadline for my project is around Week 3, Term 3. But I've been told it's smart to finish by Week 2 to have enough time for trials. This gives me about forty-two weeks to do everything.
+
+Here's my plan for the project:
+-   **Term 4 (Weeks 1-10):** First up is research, getting my ideas together, and detailed planning. This includes studying existing educational resources, writing down my early designs for the web application and its interactive modules, and setting up my core development environment (Flask, Jinja, etc.).
+-   **Summer Break:** I'll keep working on my skills, focusing on advanced Flask backend logic and JavaScript for front-end interactivity. I'll also start building early prototypes of the core interactive video player and animation integration.
+-   **Term 1 (Weeks 1-10):** This is where most of the building happens. I'll put in the main features of the web application, develop the database structure for content, and create the main interactive video modules and explainer animations.
+-   **Term 2 (Weeks 1-10):** I'll create and add all the remaining multimedia content, refine the UI/UX design, and implement all the interactive elements like quizzes and scenario responses. Then, I'll do lots of testing to make sure everything works and find any bugs.
+-   **Term 3 (Weeks 1-2):** Final polish, more testing, and finishing up the project. This means getting everything ready for the final presentation, writing up all the detailed documentation for my folio, and a final quality check to ensure it meets all objectives.
+
+## 1.7 Expected Outcomes and Success Criteria
+I'll judge if 'Sex Education Training: An Interactive Parent-Teen Guide' is successful based on how well it meets my goals and how good the final product and my folio are. Here are my specific success checks:
+1.  **Goals Met & User Impact:** The web application needs to clearly meet its main goals (from Section 1.4), especially in **its ability to facilitate more comfortable and effective parent-teen sex education conversations and improve user understanding of sensitive topics**. I'll check this by **conducting organised user feedback sessions with parents and teenagers, observing their engagement with the interactive modules, and reviewing their responses to targeted surveys regarding their comfort and understanding, all of which will be documented in my folio**.
+2.  **Tech Quality & Looks/Sounds:** The finished application needs to show that I'm really good at **efficient full-stack web development, creating smooth 2D/3D animations, and delivering a responsive and intuitive user experience**. It should also have a strong **clean, inviting, and professional aesthetic style** and great, clear audio. I'll prove this with **technical test reports showing good performance and minimal bugs across different browsers, a clear design document in my folio detailing the consistent visual and auditory design choices, and positive feedback from my teachers and classmates on the application's polish and technical execution**.
+3.  **Audience Fit & Improvement:** The web application needs to be right for, easy to use for, and genuinely helpful for its audience (**parents and teenagers aged 13-17**). I'll keep checking and improving this by **getting regular feedback from a diverse group of target users throughout the development process, incorporating advice from teachers and potentially educational professionals, and continuously comparing the user experience against my detailed design plans in my folio, ensuring the application truly connects with its players**.
+
+## 1.8 Opportunities
+When 'Sex Education Training: An Interactive Parent-Teen Guide' is done, it'll be a really important part of my portfolio. It'll show off my advanced skills in **full-stack web development, interactive educational content creation, and designing multimedia for sensitive communication**. This big project will be super helpful for applying to college or jobs in **educational technology, digital media production, or e-learning development**. Plus, I'll get good at **managing a large, complex creative project from start to finish, using feedback to make significant improvements, and solving tough technical problems when things get stressful**, which will be really useful later on. (Note: copyright rules will decide if I can share this game publicly.)

@@ -7,33 +7,74 @@ collecting responses, and generating the final document using the Gemini API.
 
 import json
 import os
+from datetime import datetime
 from typing import Dict, List, Optional, Any
 from pathlib import Path
-from generate_statement_prompt import generate_prompt
-from gemini_utils import configure_gemini, generate_statement
+
+# Import from new locations
+import sys
+from pathlib import Path
+
+# Add parent directory to path to allow absolute imports
+sys.path.append(str(Path(__file__).parent.parent))
+
+from app.utils.generate_statement_prompt import generate_prompt
+from app.utils.gemini_utils import configure_gemini, generate_statement
+from app.app_config import (
+    STUDENT_RESPONSES_FILE, STATEMENT_SCHEMA, 
+    GENERATED_DIR, TEMPLATES_DIR, RESPONSES_DIR, STUDENTS_DIR
+)
 
 class InteractiveQuestionnaire:
-    def __init__(self):
+    def __init__(self, student_id: str = None):
+        """Initialize the questionnaire.
+        
+        Args:
+            student_id: Optional student ID to load existing responses
+        """
         self.responses: Dict[str, Any] = {}
         self.questions: List[Dict] = []
         self.current_question_index = 0
-        self.script_dir = Path(__file__).parent.absolute()
-        self.responses_path = self.script_dir / 'student_responses.json'
+        self.student_id = student_id or datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.project_title = None  # Will be set when responses are loaded or entered
+        self.responses_path = RESPONSES_DIR / f'responses_{self.student_id}.json'
+        self.output_dir = GENERATED_DIR / self.student_id
+        self.output_dir.mkdir(parents=True, exist_ok=True)
         self.load_questions()
+        
+    def get_snake_case_title(self):
+        """Convert the project title to snake_case for filenames."""
+        if not self.project_title and 'q1' in self.responses:
+            self.project_title = self.responses['q1']
+            
+        if not self.project_title:
+            return "untitled_project"
+            
+        # Convert to snake_case
+        # Replace spaces and special characters with underscores
+        snake_title = self.project_title.lower()
+        snake_title = ''.join(c if c.isalnum() else '_' for c in snake_title)
+        # Replace multiple underscores with a single one
+        while '__' in snake_title:
+            snake_title = snake_title.replace('__', '_')
+        # Remove leading/trailing underscores
+        snake_title = snake_title.strip('_')
+        
+        return snake_title
 
     def load_questions(self):
         """Load questions from the schema file and question file."""
         try:
-            # Get the directory of the current script
-            script_dir = Path(__file__).parent.absolute()
-            
             # Load schema for structure
-            schema_path = script_dir / 'statement_intent_schema.json'
-            with open(schema_path, 'r', encoding='utf-8') as f:
+            with open(STATEMENT_SCHEMA, 'r', encoding='utf-8') as f:
                 schema = json.load(f)
                 
-            # Load questions from markdown file
-            questions_path = script_dir / 'QS_STATEMENT_OF_INTENT.md'
+            # Load questions from markdown file in templates directory
+            questions_path = TEMPLATES_DIR / 'QS_STATEMENT_OF_INTENT.md'
+            if not questions_path.exists():
+                # Try the old location for backward compatibility
+                questions_path = Path(__file__).parent.parent / 'QS_STATEMENT_OF_INTENT.md'
+                
             with open(questions_path, 'r', encoding='utf-8') as f:
                 content = f.read()
                 
@@ -46,7 +87,7 @@ class InteractiveQuestionnaire:
         except FileNotFoundError as e:
             print(f"Error: {e.filename} not found.")
             print(f"Current directory: {os.getcwd()}")
-            print(f"Script directory: {script_dir}")
+            print(f"Templates directory: {TEMPLATES_DIR}")
             exit(1)
         except json.JSONDecodeError:
             print(f"Error: Invalid JSON in schema file.")
@@ -186,8 +227,24 @@ class InteractiveQuestionnaire:
             print("No responses to save.")
             return False
         
+        # Update project title if it's in the responses
+        if 'q1' in self.responses:
+            self.project_title = self.responses['q1']
+            
+        # Get snake_case title for the filename
+        snake_title = self.get_snake_case_title()
+        
+        # Update the responses path with the snake_case title
+        self.responses_path = RESPONSES_DIR / f'{snake_title}_{self.student_id}.json'
+        
+        # Save responses to file
         with open(self.responses_path, 'w', encoding='utf-8') as f:
-            json.dump(self.responses, f, indent=2)
+            json.dump({
+                'student_id': self.student_id,
+                'project_title': self.project_title,
+                'timestamp': datetime.now().isoformat(),
+                'responses': self.responses
+            }, f, indent=2)
         
         print(f"\nResponses saved to {self.responses_path}")
         return True
@@ -245,22 +302,15 @@ class InteractiveQuestionnaire:
             elif choice == "7":  # Exit
                 print("\nExiting without saving. Your progress will be lost.")
                 return
-            
-            # Wrap around if needed
-            if self.current_question_index >= len(self.questions):
-                self.current_question_index = 0
-    
+                
     def save_and_generate(self):
         """Save responses and generate the statement of intent."""
         if not self.responses:
             print("No responses to save. Exiting.")
             return
         
-        # Save responses
-        with open(self.responses_path, 'w', encoding='utf-8') as f:
-            json.dump(self.responses, f, indent=2)
-        
-        print(f"\nResponses saved to {self.responses_path}")
+        # Save responses to file
+        self.save_responses()
         print("\nGenerating your Statement of Intent...")
         
         try:
@@ -291,54 +341,132 @@ class InteractiveQuestionnaire:
                 print("This might be due to API rate limits, invalid API key, or network issues.")
                 return
             
+            # Get snake_case title for the filename
+            snake_title = self.get_snake_case_title()
+            
             # Create a timestamped filename to avoid overwriting previous versions
-            from datetime import datetime
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f'statement_of_intent_{timestamp}.md'
-            statement_path = self.script_dir / filename
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            output_file = self.output_dir / f'{snake_title}_statement_of_intent_{timestamp}.md'
             
             # Save the generated statement
-            with open(statement_path, 'w', encoding='utf-8') as f:
-                f.write(statement)
+            with open(output_file, 'w', encoding='utf-8') as f:
+                # Check if statement is a Gemini response object or a string
+                if hasattr(statement, 'text'):
+                    f.write(statement.text)
+                else:
+                    f.write(statement)
             
             print("\n" + "="*50)
             print("Your Statement of Intent has been generated!")
-            print(f"File saved as: {statement_path}")
+            print(f"File saved as: {output_file}")
             print("="*50)
             
             # Show the complete generated document
             print("\nComplete Generated Statement of Intent:")
             print("-" * 50)
             try:
-                with open(statement_path, 'r', encoding='utf-8') as f:
+                with open(output_file, 'r', encoding='utf-8') as f:
                     content = f.read()
                     print(content)
                 print("-" * 50)
+                
+                # Prompt to return to main menu
+                input("\nPress ENTER to return to the main menu...")
+                # Return to main menu
+                from app.__main__ import main
+                main()
+                return
             except Exception as e:
                 print(f"\nCould not display preview: {str(e)}")
+                # Prompt to return to main menu even in case of error
+                input("\nPress ENTER to return to the main menu...")
+                # Return to main menu
+                from app.__main__ import main
+                main()
+                return
             
         except Exception as e:
             print(f"\nUnexpected error: {str(e)}")
             print("Please check your configuration and try again.")
+            # Prompt to return to main menu even in case of error
+            input("\nPress ENTER to return to the main menu...")
+            # Return to main menu
+            from app.__main__ import main
+            main()
+            return
 
-    def load_saved_responses(self):
-        """Load previously saved responses if they exist."""
-        if self.responses_path.exists():
-            try:
+    def load_existing_responses(self):
+        """Load existing responses from file if available."""
+        try:
+            if self.responses_path.exists():
                 with open(self.responses_path, 'r', encoding='utf-8') as f:
-                    self.responses = json.load(f)
-                print(f"\nLoaded {len(self.responses)} saved responses from {self.responses_path}")
+                    data = json.load(f)
+                    # Check if it's the new format with metadata
+                    if isinstance(data, dict) and 'responses' in data:
+                        self.responses = data['responses']
+                        if 'student_id' in data and not self.student_id:
+                            self.student_id = data['student_id']
+                    else:
+                        # Assume it's the old format (just a dict of responses)
+                        self.responses = data
+                print(f"Loaded existing responses from {self.responses_path}")
                 return True
-            except json.JSONDecodeError:
-                print(f"\nError: Invalid JSON in {self.responses_path}")
-            except Exception as e:
-                print(f"\nError loading responses: {str(e)}")
+        except Exception as e:
+            print(f"\nError loading responses: {str(e)}")
         return False
+        
+    def load_responses_from_file(self, file_path):
+        """Load responses from a specific file path.
+        
+        Args:
+            file_path: Path to the responses file
+            
+        Returns:
+            bool: True if responses were loaded successfully, False otherwise
+        """
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                
+                # Check if it's the new format with metadata
+                if isinstance(data, dict) and 'responses' in data:
+                    self.responses = data['responses']
+                    if 'student_id' in data and not self.student_id:
+                        self.student_id = data['student_id']
+                        # Update the output directory for this student
+                        self.output_dir = GENERATED_DIR / self.student_id
+                        self.output_dir.mkdir(parents=True, exist_ok=True)
+                else:
+                    # Assume it's the old format (just a dict of responses)
+                    self.responses = data
+                
+                # Update the responses path to point to this file
+                self.responses_path = Path(file_path)
+                
+                print(f"Loaded responses from {file_path}")
+                print(f"Found {len(self.responses)} responses")
+                return True
+        except Exception as e:
+            print(f"Error loading responses from {file_path}: {str(e)}")
+            return False
 
-if __name__ == "__main__":
+def main():
     print("NESA Stage 6 IT Multimedia - Statement of Intent Generator")
     print("-" * 50)
     print("This tool will guide you through creating your Statement of Intent.")
+    
+    # Check for student ID argument
+    import sys
+    student_id = None
+    if len(sys.argv) > 1:
+        student_id = sys.argv[1]
+    
+    # Initialize and run the questionnaire
+    questionnaire = InteractiveQuestionnaire(student_id=student_id)
+    questionnaire.run()
+
+if __name__ == "__main__":
+    main()
     print("You can navigate between questions and save your progress.\n")
     
     try:

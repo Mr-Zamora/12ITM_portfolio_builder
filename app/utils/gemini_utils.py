@@ -10,36 +10,56 @@ def configure_gemini(api_key=None):
     Configure the Gemini API with the provided API key.
     
     Args:
-        api_key (str, optional): Gemini API key. If not provided, looks for GEMINI_API_KEY in app_config.py.
+        api_key (str, optional): Gemini API key. If not provided, looks for GEMINI_API_KEY in environment variables.
     """
     if not api_key:
-        try:
-            # First try to get from app_config.py
-            import app_config
-            api_key = getattr(app_config, 'GEMINI_API_KEY', None)
-        except ImportError:
-            # If that fails, try environment variables
-            from dotenv import load_dotenv
-            import os
-            load_dotenv()
-            api_key = os.getenv('GEMINI_API_KEY')
+        # Load from environment variables first
+        from dotenv import load_dotenv
+        import os
+        import sys
+        from pathlib import Path
+        
+        # Try to load from .env file in project root
+        project_root = Path(__file__).parent.parent.parent
+        load_dotenv(project_root / '.env')
+        
+        # Check for environment variable
+        api_key = os.getenv('GEMINI_API_KEY')
+        
+        # If still no API key, check if we're in development mode
+        if not api_key:
+            # Look for the API key in the .env file directly as a last resort
+            env_path = project_root / '.env'
+            if env_path.exists():
+                with open(env_path, 'r') as f:
+                    for line in f:
+                        if line.startswith('GEMINI_API_KEY='):
+                            api_key = line.strip().split('=', 1)[1].strip().strip('"').strip("'")
+                            print(f"Loaded API key from .env file")
+                            break
         
         if not api_key:
-            raise ValueError("No API key found. Please set GEMINI_API_KEY in app_config.py or .env file.")
+            raise ValueError("No API key found. Please set GEMINI_API_KEY in .env file.")
+            
+    # Configure the Gemini API
+    print(f"Configuring Gemini API with key: {api_key[:5]}...{api_key[-4:]}")
     
     genai.configure(api_key=api_key)
 
-def generate_statement(prompt_text, model_name="gemini-1.5-flash"):
+def generate_statement(prompt_text, model_name="gemini-1.5-flash", api_key=None):
     """
     Generate content using the Gemini API.
     
     Args:
         prompt_text (str): The prompt to send to the model
         model_name (str, optional): Name of the Gemini model to use
+        api_key (str, optional): Gemini API key. If not provided, will be loaded from environment
         
     Returns:
         str: Generated content
     """
+    # Configure Gemini with API key
+    configure_gemini(api_key)
     try:
         # First try with the specified model (Gemini 2.5 Flash Preview)
         preferred_model = "gemini-2.5-flash-preview-05-20"

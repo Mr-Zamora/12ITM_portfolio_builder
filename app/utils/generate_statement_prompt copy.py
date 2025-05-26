@@ -6,15 +6,35 @@ document based on student responses.
 """
 
 import json
+import sys
 from pathlib import Path
 
-def load_schema(schema_file='statement_intent_schema.json'):
-    """Load the JSON schema file."""
+# Add parent directory to path for imports
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
+# Import app_config for file paths
+from app.app_config import STATEMENT_SCHEMA
+
+def load_schema(schema_file=None):
+    """Load the JSON schema file.
+    
+    Args:
+        schema_file: Optional path to schema file. If None, uses the path from app_config.
+    """
+    if schema_file is None:
+        schema_file = STATEMENT_SCHEMA
+        
     try:
         with open(schema_file, 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
         print(f"Error: Schema file '{schema_file}' not found.")
+        # Try the old location as a fallback
+        old_path = Path(__file__).parent.parent.parent / 'statement_intent_schema.json'
+        if old_path.exists():
+            print(f"Using fallback schema file at {old_path}")
+            with open(old_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
         exit(1)
     except json.JSONDecodeError:
         print(f"Error: Invalid JSON in schema file '{schema_file}'.")
