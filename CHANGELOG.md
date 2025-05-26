@@ -2,6 +2,21 @@
 
 All notable changes to the NESA Stage 6 IT Multimedia Portfolio Builder will be documented in this file.
 
+## [1.1.0] - 2025-05-27
+
+### Added
+- Enhanced statement generation with multiple writing style options for each section
+- Implemented randomization system to ensure each statement feels unique
+- Added student persona creation for more authentic-sounding statements
+- Created alternative paragraph structures and sentence patterns
+- Added explicit instructions to avoid template language
+
+### Changed
+- Completely redesigned the statement template to eliminate repetitive phrasing
+- Modified prompt structure to prioritize variety between generated statements
+- Improved f-string syntax in generate_statement_prompt.py
+- Enhanced Australian spelling and community college voice guidelines
+
 ## [1.0.0] - 2025-05-27
 
 ### Added
