@@ -1,0 +1,59 @@
+# Statement of Intent: Crazy Rich Asians
+
+## 1.1 Introduction: Defining the Project and its Purpose
+For my Industrial Technology Multimedia Major Project, I'm going to design, build, and make a highly interactive web-based multimedia experience featuring advanced 2D and 3D animation, visual effects, and dynamic web design. This project is titled 'Crazy Rich Asians'.
+
+This project is mostly happening because I've noticed a significant gap in accessible financial literacy education for young Australians, especially compared to the financial wisdom often held by older generations, like migrant parents. Many of us want to learn from their experiences, feel inspired, and be guided, but we also need clear, practical advice on how to build our own wealth and secure our future in today's world.
+
+My project will specifically focus on bridging the gap between intergenerational financial wisdom and contemporary realities, exploring stories of wealth creation and management from a unique cultural perspective. It aims to make complex financial ideas relatable and actionable. I'll do this primarily using web design with `Flask`, `Jinja`, `HTML`, `CSS`, `JSON`, and `JavaScript` for the backend and interactive front-end, along with `Adobe After Effects` and `Premiere Pro` for `VFX` and advanced 2D and 3D animation. These tools are key for building a rich, interactive experience.
+
+## 1.2 Rationale: Why This Project? Why This Approach?
+I decided to make this project because I grew up hearing amazing stories about my parents and grandparents, and lots of my friends have similar experiences. We often find it hard to connect these incredible narratives of hard work and financial growth to our current situations, including our own entitlements and privileges. This project fits right in with what I want to do in the digital education and interactive learning platforms industry, where there's a real need for engaging and culturally relevant content.
+
+I also really believe that a web-based multimedia experience is the best way to do this project. It's interactive, visually rich, and super accessible, meaning it can reach a wide audience easily. A website lets me combine compelling storytelling with interactive learning modules, something a static document or simple video just can't do. I can use Flask to handle the complex backend logic, After Effects for stunning animations that explain tricky financial concepts, and `HTML`/`CSS`/`JS` to make the whole thing feel alive and easy to use.
+
+This project is a huge chance for me to learn and get really good at advanced `Flask` web development, especially how to integrate dynamic content, and sophisticated 2D and 3D animation for explainer content. I'll also be focusing on creating seamless visual effects to enhance the narrative. These are all skills used a lot in today's interactive media and digital education industries.
+
+## 1.3 Target Audience: Who is this Project For, and Why?
+The main people I'm making 'Crazy Rich Asians' for are young Australians, specifically those aged 15-25, who are interested in personal finance, entrepreneurship, and learning from the experiences of others, particularly across generations.
+
+I picked this group because there's a clear financial literacy gap among young people, and they are often actively seeking practical, actionable advice in digital formats. They're also the ones who appreciate authentic storytelling and unique perspectives, especially those that reflect diverse cultural backgrounds. Plus, they're digitally native, meaning they'll easily connect with an interactive web-based platform.
+
+I expect this audience to be digitally literate and keen to learn, preferring interactive and visually rich content over traditional, dry textbooks. They want clear guidance and actionable steps for building wealth, but they also value being inspired and guided by real-life stories. This understanding will directly change how I design the user interface, the flow of information, and the types of interactive elements and stories I include, making sure it works really well for them.
+
+## 1.4 Project Goals and Objectives
+The main goal of this project is to empower young people with foundational financial literacy skills and provide a unique perspective on wealth creation through compelling intergenerational narratives. To do this, here are my clear and important goals:
+
+-   **Objective 1 (User Experience/Learning Outcome):** Help users understand core financial concepts, like budgeting, saving, and investing, through interactive modules and relatable case studies presented via engaging animated stories.
+-   **Objective 2 (Engagement/Aesthetics/Technical Aspect):** Create a visually stunning and highly engaging web interface using high-quality 2D/3D animations and custom `VFX` to make complex financial topics digestible, memorable, and culturally relevant.
+-   **Objective 3 (Skill Demonstration/Problem-Solving):** Successfully build a robust web application using `Flask` and `Jinja`, demonstrating advanced full-stack web development skills and the seamless integration of rich multimedia content for a dynamic user experience.
+
+## 1.5 Project Parameters, Scope, and Constraints
+The final thing I'm making will be an interactive web application, delivered as an `HTML5` web platform accessible through desktop and mobile browsers.
+
+The website will have three to five key components: a main navigation system, several interactive learning modules covering different financial topics, animated storytelling segments that explore intergenerational wealth, a resource library with links to further reading, and dynamic data visualisations to illustrate concepts. To make sure I can finish the project on time, I won't be adding things like personalised financial advisory tools, real-time stock market data feeds, or user accounts with login functionality to the final website.
+
+Here are the main limitations and challenges I expect to face while making this:
+-   **Time:** The biggest challenge is the time I have for the HSC course, which is about forty-two weeks. This means I really need to manage my time strictly and stick to the detailed plan I've set up, especially balancing the web development with the demanding animation work.
+-   **Skills & Knowledge:** To do this well, I need to get good at mastering `Flask` and `Jinja` for complex full-stack web development, and also perfecting my animation pipelines in `Adobe After Effects` and `Premiere Pro` for seamless `VFX` integration. I'll learn these skills from online tutorials (like Udemy, Skillshare), asking for advice from people in the industry, and a lot of practice making smaller test projects to get the techniques right.
+-   **Resources & Equipment:** I need access to certain software like `Adobe Creative Suite` (specifically `After Effects` and `Premiere Pro`), and a good development environment for `Python`/`Flask`. I'm lucky to have access to a powerful enough computer at home and school to handle the heavy rendering and coding. I'll have to carefully handle things like optimising animation file sizes for web delivery and ensuring the entire application runs smoothly across different browsers. I'll manage this by thorough testing and continuous optimisation.
+-   **Technical Complexity:** Making tricky features, like getting dynamic data visualisation for financial concepts to work smoothly within the web interface, or seamlessly integrating pre-rendered 2D and 3D animated sequences into the interactive web environment, will be a big technical challenge. This means I need to plan really well, test things often, and fix bugs carefully, especially when combining different multimedia elements.
+
+## 1.6 Timeline and Milestones
+The deadline for my project is around Week 3, Term 3. But I've been told it's smart to finish by Week 2 to have enough time for trials. This gives me about forty-two weeks to do everything.
+
+Here's my plan for the project:
+-   **Term 4 (Weeks 1-10):** First up is research, getting my ideas together, and detailed planning. This includes studying existing financial literacy resources, mapping out the narrative flow for the animated stories, and setting up my core tech stack for Flask and the database.
+-   **Summer Break:** I'll keep working on my skills, focusing on advanced `Python` and `Flask` techniques, and start building early versions of the website's core structure. I'll also begin character design and storyboarding for the animated segments.
+-   **Term 1 (Weeks 1-10):** This is where most of the building happens. I'll put in the main web features, connect Flask with the front-end (Jinja templates), and set up the interactive modules. I'll also start producing the bulk of the 2D and 3D animations and `VFX` assets.
+-   **Term 2 (Weeks 1-10):** I'll create and add all the art, sound, and remaining animations. Then, I'll integrate everything into the website, doing lots of testing to make sure everything works and find any bugs, especially on different browsers and devices.
+-   **Term 3 (Weeks 1-2):** Final polish, more testing, and finishing up the project. This means getting everything ready for the final presentation, writing up all the detailed documentation for my folio, and a final quality check to ensure the project meets all its goals and looks professional.
+
+## 1.7 Expected Outcomes and Success Criteria
+I'll judge if 'Crazy Rich Asians' is successful based on how well it meets my goals and how good the final website and my folio are. Here are my specific success checks:
+1.  **Goals Met & User Impact:** The website needs to clearly meet its main goals (from Section 1.4), especially in helping users understand core financial concepts and connecting with the intergenerational stories. I'll check this by getting organised player feedback sessions, watching how users interact with the interactive modules, and tracking how many animated lessons they complete, all written down in my folio.
+2.  **Tech Quality & Looks/Sounds:** The finished website needs to show that I'm really good at coding efficiently with `Flask`, making smooth and expressive animations, and creating professional visual effects. It should also have a strong, modern, and engaging aesthetic that makes the content feel approachable and high-quality. I'll prove this with test reports showing good performance and few bugs, a clear plan in my folio for how the website looks and sounds consistently, and getting positive feedback from my teachers and classmates on the art and tech.
+3.  **Audience Fit & Improvement:** The website needs to be right for, easy to use for, and fun for its audience (young Australians aged 15-25). I'll keep checking and improving this by getting feedback from target users regularly through surveys and direct testing, taking advice from my teachers and potentially people in the digital education industry, and checking it against my detailed design plans in my folio, so the website really connects with its players.
+
+## 1.8 Opportunities
+When 'Crazy Rich Asians' is done, it'll be a really important part of my portfolio. It'll show off my advanced skills in full-stack web development using `Flask`, complex 2D and 3D animation, and professional visual effects for educational content. This big project will be super helpful for applying to college courses or jobs in digital media, interactive education, or even FinTech communication. Plus, I'll get good at managing a big creative project from start to finish, using feedback to make it better, and solving tough technical problems when things get stressful, which will be really useful later on.
